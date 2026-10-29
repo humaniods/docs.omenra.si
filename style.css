@@ -1,0 +1,11 @@
+/* Unsloth-style reading column: keep text from stretching on wide screens */
+:root {
+  --content-width: 768px;
+}
+
+/* GitBook-style sidebar: small uppercase section headers */
+.sidebar-group-header {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}

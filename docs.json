@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "aspen",
   "name": "Omenra",
   "description": "A lab for intelligence that acts: agents, models, tools, bots and robots built to see what comes next.",
   "colors": {
-    "primary": "#3b5bff",
-    "light": "#c9d4ff",
-    "dark": "#8fa5ff"
+    "primary": "#1F8A5B",
+    "light": "#5AC492",
+    "dark": "#239363"
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -18,6 +18,14 @@
       {
         "label": "Vision",
         "href": "/vision"
+      },
+      {
+        "href": "/company/roadmap",
+        "label": "Roadmap"
+      },
+      {
+        "href": "/faq",
+        "label": "FAQ"
       }
     ],
     "primary": {
@@ -68,5 +76,95 @@
         "pages": ["faq"]
       }
     ]
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#111412"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Start here",
+        "items": [
+          {
+            "label": "What is Omenra",
+            "href": "/"
+          },
+          {
+            "label": "Vision",
+            "href": "/vision"
+          },
+          {
+            "label": "Your first agent",
+            "href": "/quickstart"
+          },
+          {
+            "label": "Glossary",
+            "href": "/glossary"
+          }
+        ]
+      },
+      {
+        "header": "Platform",
+        "items": [
+          {
+            "label": "The five births",
+            "href": "/births/agents"
+          },
+          {
+            "label": "How it thinks",
+            "href": "/intelligence/prediction"
+          },
+          {
+            "label": "Safety",
+            "href": "/control/safety"
+          }
+        ]
+      },
+      {
+        "header": "Company",
+        "items": [
+          {
+            "label": "About",
+            "href": "/company/about"
+          },
+          {
+            "label": "Roadmap",
+            "href": "/company/roadmap"
+          },
+          {
+            "label": "FAQ",
+            "href": "/faq"
+          }
+        ]
+      }
+    ]
+  },
+  "fonts": {
+    "family": "Inter"
+  },
+  "banner": {
+    "content": "🌱 Omenra is forming its first cohort of design partners. ✨ [Read more](/company/about#design-partners)",
+    "dismissible": true,
+    "color": {
+      "light": "#1F8A5B",
+      "dark": "#1A2A21"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity"
+    ],
+    "display": "header"
   }
 }
