@@ -1,0 +1,59 @@
+---
+title: "Glossary"
+description: "Six words that carry the whole platform."
+icon: "book"
+---
+
+Omenra uses a small vocabulary on purpose. If two of these words ever mean the same thing in a conversation, one of them is being used wrong.
+
+## Agent
+
+A mind with memory, tools and a contract, pursuing a goal across more than one step. An agent is the default birth: it can reason about a situation it has not seen, choose among tools, and decide when to ask for help.
+
+Not to be confused with a **bot**, which is always-on and narrow, or a **model**, which is a capability rather than a worker.
+
+## Model
+
+A capability, callable by agents. Ranges from a large general model to a narrow specialist that does one judgement better than anything else. A model does not have a goal; an agent gives it one.
+
+## Tool
+
+A single action with an explicit contract: input, output, cost, risk class, and whether it is reversible. Tools are how intelligence becomes effect. A tool never decides when to run — it is run.
+
+## Bot
+
+An always-on agent bound to a channel — a chat room, an inbox, a queue, a stream — with a narrow remit and a small budget. Bots are the cheapest birth and the most visible, because they live where people already are.
+
+## Robot
+
+An embodied agent. Same mind, different body, and a much stricter contract: physical actions are irreversible in a way digital ones rarely are. Robots are born in simulation first, always.
+
+## Swarm
+
+Several agents working one problem under an arbiter, sharing memory and dividing labour. Not a hierarchy: a swarm is a way to keep one mind from being the bottleneck on a problem too large to hold at once.
+
+---
+
+## The rest, briefly
+
+| Term | Meaning |
+| --- | --- |
+| **Birth** | The act of creating an agent, model, tool, bot or robot. Compared to "build" because a birth is not finished on delivery. |
+| **Contract** | The boundary an agent operates inside: autonomy level, budget, scope, definition of done, escalation path. |
+| **Autonomy level** | L0–L5, from "suggests only" to "acts without asking". See [Autonomy](/intelligence/autonomy). |
+| **Horizon** | How far ahead a prediction reaches. Minutes for operations, months for strategy. |
+| **Calibration** | Whether a stated probability matches observed frequency. The metric we care most about. |
+| **World model** | The internal representation of how things relate and change, which predictions are derived from. |
+| **Memory** | The three stores an agent draws on: episodic, semantic, procedural. |
+| **Arbiter** | The agent or rule that resolves conflicts inside a swarm. |
+| **Kill switch** | A single control that stops a birth mid-action and revokes its credentials. |
+| **Design partner** | An organisation building a first birth with us, in exchange for influence over the platform. |
+
+<CardGroup cols={2}>
+  <Card title="The five births" icon="shapes" href="/births/agents">
+    Each definition, in depth.
+  </Card>
+  <Card title="Autonomy levels" icon="gauge" href="/intelligence/autonomy">
+    The ladder every birth climbs.
+  </Card>
+</CardGroup>

@@ -1,0 +1,72 @@
+---
+title: "Vision"
+description: "Anticipation, not description, is what makes intelligence worth deploying."
+icon: "telescope"
+---
+
+Every system built in the last decade tells you what already happened. Dashboards describe the past. Logs describe the past. Even the best chat models describe, mostly, what is already known.
+
+The gap is not intelligence. It is **foresight**.
+
+## The thesis
+
+An organisation that can see six hours ahead makes better decisions than one that can see six hours of history, even if both are equally smart. Timing beats analysis. The value of knowing is entirely in knowing *before*.
+
+So Omenra is built backwards from one question:
+
+> Given everything observable now, what is likely to be true next — and what should we do about it?
+
+Everything in this documentation is an answer to that question. The [prediction engine](/intelligence/prediction) is how we answer the first half. The [five births](/births/agents) are how we answer the second.
+
+## Four beliefs
+
+### 1. Prediction is the product
+
+Chat is an interface, not a purpose. A prediction carries three things a paragraph cannot: a **probability**, a **horizon** and a **consequence**. When a system gives you those, you can act. When it gives you prose, you still have to decide.
+
+### 2. Intelligence needs a body
+
+A model that cannot call a tool cannot act. An agent that cannot leave its context window cannot remember. A system that cannot move cannot build or fix anything.
+
+That is why we birth five kinds of thing rather than one: the mind is the same, the body decides what it can do.
+
+### 3. Unpredictable minds, predictable contracts
+
+This is the sentence the whole company hangs on.
+
+We want agents that surprise us — new strategies, unusual tool combinations, solutions nobody specified. That is where the value is. But an agent that is *only* unpredictable is a hazard, not a colleague.
+
+So creativity lives inside a contract: a fixed autonomy level, a budget, a set of permitted actions, a definition of what "done" means, and a way to stop. Inside it, the agent is free. Outside it, the agent does not exist.
+
+### 4. Capability without control is a liability
+
+The larger the capability, the smaller the acceptable margin for error. Every birth on this platform therefore ships with the same four control surfaces: autonomy level, containment, audit, and kill switch. See [Safety](/control/safety).
+
+## On "ruling the world"
+
+It is the honest ambition, so it deserves a straight answer.
+
+We are not interested in systems that rule, and we would not build them if asked. A system that optimises over everyone's preferences at once has no way to know which of them matter.
+
+What we want is systems that **see far enough to act well** — in a market, in a network, on a factory floor, in a hospital corridor — and that stay inside the scope they were given. Foresight without jurisdiction. That is the version of this ambition we can defend, and it is a harder engineering problem than the dramatic one.
+
+## What would make us wrong
+
+A vision that cannot fail is not a plan. Three things could falsify this one:
+
+| If this turns out true | Then |
+| --- | --- |
+| Prediction quality plateaus at "expensive guess" | The product collapses back into an analytics tool with better marketing |
+| Cheap, narrow models outperform general agents on every task that matters | The multi-agent architecture becomes unnecessary overhead |
+| Autonomy never earns enough trust to act without approval | Omenra becomes a recommendation engine, and the "rule" framing is empty |
+
+We would rather name those now than discover them in a board deck.
+
+<CardGroup cols={2}>
+  <Card title="The platform" icon="shapes" href="/births/agents">
+    What we build, concretely.
+  </Card>
+  <Card title="The controls" icon="shield-halved" href="/control/safety">
+    What stops it going wrong.
+  </Card>
+</CardGroup>

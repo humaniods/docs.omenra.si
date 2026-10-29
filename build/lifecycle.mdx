@@ -1,0 +1,93 @@
+---
+title: "Lifecycle"
+description: "From remit to retirement: the seven stages every birth passes through, and what changes at each."
+icon: "arrows-spin"
+---
+
+A birth is not a deployment. It is a thing with a life: it is designed, evaluated, released, watched, revised and eventually retired. Skipping a stage does not save time; it moves the cost to a worse moment.
+
+## The seven stages
+
+| Stage | Question answered | Exit condition |
+| --- | --- | --- |
+| **1. Remit** | What judgement does this make, at what horizon? | One paragraph a non-author can restate |
+| **2. Design** | Which birth, which tools, which memory, which contract? | Contract written and reviewed |
+| **3. Build** | Prompts, tools, data, retrieval, models | Runs end to end on a fixture |
+| **4. Evaluate** | Is it right, and does it know when it is not? | Calibration and task metrics inside agreed bounds |
+| **5. Release** | Who gets it, at what autonomy level? | Shadow or draft mode live to real users |
+| **6. Observe** | What surprises it? | Surprises become cases, cases become tests |
+| **7. Retire** | Is it still worth its cost? | Replaced, merged, or switched off with its memory archived |
+
+## The contract, written down
+
+An illustrative manifest, showing the shape rather than a final schema:
+
+```yaml
+# illustrative — the schema is not final
+name: escalation-forecaster
+birth: agent
+remit: >
+  Predict which open tickets will escalate within 48 hours, and name the
+  signal that drove the prediction.
+
+horizon: 48h
+prediction: p_escalation
+
+memory:
+  episodic: 90d
+  semantic: tenant
+  procedural: shared
+
+tools:
+  - read_ticket          # R0
+  - read_customer        # R0
+  - add_ticket_note      # R1
+
+contract:
+  autonomy: L3
+  budget: {spend: 2.00, minutes: 20, iterations: 8}
+  done: prediction_written
+  escalate_when: confidence < 0.6
+
+evaluation:
+  set: golden-escalations-v3
+  require: {brier: "< 0.18", coverage: "> 0.75"}
+```
+
+Read it as a checklist of decisions, not as configuration syntax. Every field is a question somebody had to answer before the first run.
+
+## Release: always quieter than you want
+
+Nobody's first release should be at the top of the autonomy ladder. The order is fixed: shadow, then draft, then act with review, then act within scope. The [autonomy page](/intelligence/autonomy) explains what evidence justifies each step.
+
+## Observe: surprises are the product
+
+The signal that a birth is working is not "no incidents". It is **surprises per week falling while coverage rises** — the agent is still finding things you did not specify, and it is finding fewer of them the wrong way.
+
+Every surprise becomes a case. Every case joins the evaluation set. Over a year, the evaluation set becomes the most valuable artefact in the project: a compressed history of every way this problem can go wrong.
+
+## Revise without drifting
+
+Two kinds of change, and they need different treatment:
+
+- **Contract changes** — autonomy, budget, scope, tools. A permission change is a security event: reviewed, logged, and never bundled into a "minor" release.
+- **Capability changes** — prompts, models, retrieval, memory policy. These must pass the full evaluation set before release, including the cases that previously failed.
+
+<Warning>
+  Never change a model or a prompt without re-running evaluation. A model upgrade that improves benchmarks can silently destroy calibration, and calibration is what makes the predictions usable at all.
+</Warning>
+
+## Retiring
+
+Retirement is a decision with three possible shapes: **replace** (a better birth takes the remit), **merge** (it becomes a tool inside something larger), or **switch off**.
+
+In all three cases, memory is archived rather than deleted, and the evaluation set is kept. The next person building this will want the cases more than the code.
+
+<CardGroup cols={2}>
+  <Card title="Evaluation" icon="flask" href="/build/evaluation">
+    What "inside agreed bounds" means.
+  </Card>
+  <Card title="Governance" icon="scale-balanced" href="/control/governance">
+    Who signs off on a release.
+  </Card>
+</CardGroup>

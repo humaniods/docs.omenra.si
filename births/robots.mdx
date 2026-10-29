@@ -1,0 +1,81 @@
+---
+title: "Robots"
+description: "An embodied agent. Same mind, physical body, stricter contract."
+icon: "robot"
+---
+
+A robot is where prediction stops being advice and becomes motion.
+
+Everything on the other four birth pages still applies — goal, memory, tools, contract — with one difference that rearranges the priorities: **the physical world does not roll back**.
+
+## Why embodiment is a distinct birth
+
+| | Digital action | Physical action |
+| --- | --- | --- |
+| Undo | Restore a snapshot | Does not exist |
+| Failure visibility | Logs, traces | Damage, injury, downtime |
+| Latency tolerance | Generous | Tight, and safety-critical |
+| Authority | Can be granted broadly | Must be geometric and bounded |
+| Testing | Replay a fixture | Simulate, then supervise, then run |
+
+A digital tool's risk class is a property of the tool. A robot's risk is a property of **where the robot is**. The same arm is harmless in a cage and dangerous beside a person, so a robot's contract is spatial and temporal, not just functional.
+
+## Born in simulation, always
+
+No Omenra robot runs its first action in the real world.
+
+<Steps>
+  <Step title="Simulate">
+    Train and evaluate in a physics simulation of the actual cell or aisle — same dimensions, same obstacles, same tolerances.
+  </Step>
+  <Step title="Rehearse">
+    Run the intended task against recorded sensor data from the real site before touching anything. This catches the gap between the simulation and the room.
+  </Step>
+  <Step title="Supervise">
+    First real runs are L2 at most: the robot proposes, a human approves each action or watches with a live kill switch.
+  </Step>
+  <Step title="Supervise less">
+    Autonomy increases only as the observed failure rate stays inside the envelope defined in the contract.
+  </Step>
+</Steps>
+
+## The safety envelope
+
+Every robot is born with four hard limits, enforced below the planning layer so no amount of reasoning can talk past them:
+
+**Speed envelope.** A maximum velocity that depends on what is detected nearby, not on what the planner believes.
+
+**Force limit.** The maximum force the effector may apply, so that contact with a person is bounded regardless of intent.
+
+**Workspace limit.** A geometric boundary the body may not cross, enforced against the body's own position, not against its plan.
+
+**Stop conditions.** What the robot does when it loses comms, loses localisation, sees an unknown obstruction, or receives no heartbeat. The default is stop, hold position, and beacon — never "continue with the last plan".
+
+<Warning>
+  Never put a safety limit where the agent can read it and reason about it. Limits above the planning layer are suggestions that a sufficiently creative agent can argue with. Limits must sit in the control loop, below anything that thinks.
+</Warning>
+
+## What robots are for
+
+The interesting cases are not the ones a fixed automation already handles. They are the ones where the environment is not fully specified:
+
+- Picking mixed items whose position was never taught, in a warehouse that changes weekly.
+- Inspecting infrastructure where the defect looks different every time and "normal" is a judgement.
+- Working alongside people in a space that was not designed for machines.
+
+If the task is identical every cycle and the environment never varies, a fixed automation is cheaper, faster and safer. Robots earn their complexity when the situation has to be *read* before it can be acted on.
+
+## Supervision is a product feature
+
+A robot without a human override is not autonomous, it is unsupervised. Remote supervision — live video, proposed action, single-approval, instant stop — is part of the birth, not an accessory bolted on after the first incident review.
+
+The cost of that supervision is the real economics of embodied intelligence, and pretending otherwise is how robotics companies build impressive demos and unusable products.
+
+<CardGroup cols={2}>
+  <Card title="Safety" icon="shield-halved" href="/control/safety">
+    Containment and kill switches across every birth.
+  </Card>
+  <Card title="Autonomy" icon="gauge" href="/intelligence/autonomy">
+    The levels a robot climbs, slowly.
+  </Card>
+</CardGroup>

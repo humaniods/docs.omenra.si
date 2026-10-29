@@ -1,0 +1,84 @@
+---
+title: "Prediction"
+description: "How a claim about the future becomes something you can act on: probability, horizon, consequence, calibration."
+icon: "telescope"
+---
+
+This is the engine the company is built around. Everything else — the births, the contracts, the controls — exists to turn a prediction into an action.
+
+## A prediction is four things
+
+Not a sentence. Four fields, and if any is missing it is not a prediction:
+
+| Field | Question | Example |
+| --- | --- | --- |
+| **Claim** | What, specifically, will be true? | "Payment gateway error rate exceeds 5%" |
+| **Probability** | How likely, as a number? | `0.72` |
+| **Horizon** | By when? | "within 6 hours" |
+| **Consequence** | What changes if it happens? | "checkout unavailable; ~£40k/hour" |
+
+Remove the horizon and you have an opinion. Remove the consequence and you have a forecast nobody should spend money on. Remove the probability and you cannot compute whether acting is worth it.
+
+## How a prediction is produced
+
+```
+ signals ──► world model ──► scenarios ──► probability ──► decision
+   ▲                                                │
+   └──────────────── feedback ◄─────────────────────┘
+```
+
+**Signals.** Telemetry, market data, tickets, logs, sensor streams, news, human notes. The quality ceiling of a prediction is set here: no reasoning layer recovers information that was never collected.
+
+**World model.** A representation of what relates to what and how things change. This is what separates forecasting from curve-fitting — a model of *mechanism* lets you handle a situation that did not appear in the training data.
+
+**Scenarios.** Several futures, not one. A single confident path is a story; a distribution over paths is a forecast. Divergent scenarios are the useful output, because they tell you what to watch.
+
+**Probability.** The scenarios collapsed into a number, with a spread. Wide spread is information: it means "act cheaply, or buy information before you act".
+
+**Decision.** What to do, given the probability and the cost of being wrong in each direction. A 30% chance of an outage and a 30% chance of a mild slowdown demand different responses at the same confidence.
+
+## Calibration is the whole game
+
+A forecaster that says 90% and is right half the time is worse than useless: it will get you to spend money on the wrong things with confidence.
+
+Every Omenra forecaster is published with a **reliability curve** and a **Brier score**, and is scored on both after deployment, not just at training.
+
+| Stated probability | Observed frequency | Reading |
+| --- | --- | --- |
+| 70% | 68% | calibrated |
+| 70% | 45% | overconfident — do not ship |
+| 70% | 92% | underconfident — leaving value on the table |
+
+Overconfidence is the failure that hurts. Underconfidence is the failure that costs opportunity. Both are fixable, but only if you measure them, which means logging every prediction and its eventual outcome — including the ones nobody acted on.
+
+## Horizons
+
+Different horizons are different problems, not different settings on one model.
+
+| Horizon | Typical use | Main difficulty |
+| --- | --- | --- |
+| Seconds to minutes | Robot motion, fraud interception, cache and capacity | Latency and noise |
+| Hours | Incident escalation, demand spikes, staffing | Signal availability |
+| Days to weeks | Supply, churn, hiring, cash | Confounding, regime change |
+| Months to years | Strategy, market entry, technology bets | Reflexivity — the prediction changes behaviour |
+
+The long horizons are where the ambition lives and where the evidence is thinnest. We would rather publish a well-calibrated six-hour forecast than a confident five-year one.
+
+## When we refuse to predict
+
+A forecasting system that will answer anything is a fortune teller. Three refusals:
+
+**No signal.** If there is no informational path from the present to the outcome, abstain. Abstention is a result, not a failure — it tells you to buy information instead of acting.
+
+**Self-defeating.** Some predictions change the thing predicted: publishing "trust in this bank is falling" can cause the fall. Reflexive systems need a different treatment (scenario ranges and stress tests, not point probabilities), and we say so rather than pretending the number is neutral.
+
+**Harmful use.** Predictions about identifiable people used to deny them opportunity — credit, employment, insurance, liberty — are out of scope. Not because the statistics are uninteresting, but because the deployment is.
+
+<CardGroup cols={2}>
+  <Card title="Evaluation" icon="flask" href="/build/evaluation">
+    How calibration is measured and regression-tested.
+  </Card>
+  <Card title="Autonomy" icon="gauge" href="/intelligence/autonomy">
+    Who is allowed to act on a prediction.
+  </Card>
+</CardGroup>

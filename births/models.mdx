@@ -1,0 +1,61 @@
+---
+title: "Models"
+description: "A capability others call: general, specialist, or forecaster. Calibrated, not just accurate."
+icon: "microchip"
+---
+
+A model is the smallest unit of intelligence Omenra births that can be called by something else. It has no goal. It has a judgement.
+
+Models matter because most work does not need an agent. If the same eleven signals predict churn the same way every time, you want a model called by a workflow — not an agent reasoning about it nightly at 40 times the cost.
+
+## Three kinds
+
+**General models** handle language, reasoning and tool selection. They are the base every agent stands on. We do not attempt to out-train the largest labs; we choose, route and constrain the best available general model for a given job.
+
+**Specialist models** do one judgement better than any general model can. A specialist is worth birthing when the data is yours and the decision is narrow: which of these two invoices matches, which of these alerts is a false positive, which of these parcels will miss its window.
+
+**Forecasters** produce the thing the company exists for: a distribution over what happens next, at a stated horizon. See [Prediction](/intelligence/prediction).
+
+## What "better" means here
+
+Accuracy is the wrong headline metric for a model that feeds a decision.
+
+A model that says "fraud, 0.94" and is right 60% of the time is worse than one that says "fraud, 0.6" and is right 60% of the time. The second one lets a human set a threshold. The first one destroys the threshold.
+
+So every model Omenra births is published with three numbers, not one:
+
+| Metric | Question |
+| --- | --- |
+| **Discrimination** | Can it tell the classes apart? (AUC, precision at a chosen recall) |
+| **Calibration** | When it says 70%, is it right seven times in ten? (Brier, reliability curve) |
+| **Coverage** | For how much of the input space does it return a confident answer at all? |
+
+A model that abstains on the hard 30% and is calibrated on the rest is more valuable than one that guesses everywhere. Abstention is a feature; see [Evaluation](/build/evaluation) for how we score it.
+
+## Birth, then keep it alive
+
+A model is not finished at training time. It is watched:
+
+- **Drift** — the world changes and accuracy quietly falls. Monitored on the same calibration curve, not just on accuracy.
+- **Contamination** — the evaluation set leaks into training and the numbers become meaningless. Held-out data is quarantined, and every eval set is documented.
+- **Scope creep** — a model asked to answer outside its training distribution will still answer. Every model declares its domain, and an out-of-domain input returns an abstention rather than a confident guess.
+
+## On training our own
+
+Two honest positions, because the difference matters to anyone deciding whether to build here:
+
+1. **We fine-tune before we pre-train.** Most of the value in a specialist comes from a well-chosen task, a well-built dataset and a good evaluation — not from parameter count.
+2. **We only pre-train where a general model is structurally wrong.** Forecasting distributions at a stated horizon is such a case; general chat models are trained to be helpful, not to be calibrated over time.
+
+<Note>
+  Model weights, sizes and training recipes are not published on this page. This is the vocabulary and the standard, not a model card. Model cards come with the births themselves.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Prediction" icon="telescope" href="/intelligence/prediction">
+    The output a forecaster produces.
+  </Card>
+  <Card title="Tools" icon="wrench" href="/births/tools">
+    How a model's judgement becomes an action.
+  </Card>
+</CardGroup>

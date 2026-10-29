@@ -1,0 +1,88 @@
+---
+title: "Evaluation"
+description: "Calibration over accuracy, abstention as a scored behaviour, and why the eval set outlives the model."
+icon: "flask"
+---
+
+Benchmarks measure whether a model is impressive. Evaluation measures whether a birth is **safe to act on**. Those are different questions, and only the second one decides whether you deploy.
+
+## Three metrics, in order of importance
+
+**1. Calibration.** When it says 70%, is it right seven times in ten? Measured with a reliability curve and a Brier score across every prediction, including the ones nobody acted on.
+
+**2. Coverage.** How much of the real input distribution gets a confident answer at all? A model that is perfectly calibrated on 20% of cases and silent on the rest is not useful; one that is calibrated on 80% is.
+
+**3. Task outcome.** Did the thing the human cared about happen? Revenue saved, incident caught early, ticket closed correctly. This is the number the business sees, and the one most easily gamed — which is why it comes last.
+
+A birth must clear all three. Passing task outcome while failing calibration means you have a system that gets the answer right for reasons it cannot explain, and that will be wrong in ways you cannot predict.
+
+## Abstention is a behaviour, not a gap
+
+Every birth declares how it behaves when it is outside its competence:
+
+| Behaviour | Question | Example |
+| --- | --- | --- |
+| **Answer** | Confidence above threshold, in distribution | "Escalation 0.71, driven by two SLA breaches" |
+| **Qualify** | Answer with a wide interval | "Escalation 0.3–0.6; the signal is contradictory" |
+| **Abstain** | No answer, with a reason | "New product line; no comparable history" |
+| **Escalate** | Hand to a human with context | "Above my risk class — needs approval" |
+
+Scoring abstention correctly is what stops a system from guessing. Reward warranted abstention and penalise confident guessing, and the behaviour follows.
+
+## Building the evaluation set
+
+The set starts small and grows from real use.
+
+<Steps>
+  <Step title="Seed with known cases">
+    Fifty to two hundred cases where you know the right answer and, more importantly, *why*. Include the ones that look easy.
+  </Step>
+  <Step title="Add the adversarial cases">
+    Ambiguous inputs, conflicting signals, out-of-distribution requests, inputs that look like instructions. These find the failures that matter.
+  </Step>
+  <Step title="Add every production surprise">
+    When the birth does something unexpected, it becomes a case with the outcome attached. This is how the set becomes an asset rather than a formality.
+  </Step>
+  <Step title="Hold back a set nobody looks at">
+    A hidden slice, evaluated on release only, catches the slow leak where the visible set gets optimised against.
+  </Step>
+</Steps>
+
+<Warning>
+  Contamination destroys evaluation silently. If eval cases leak into training or into prompt examples, the numbers improve while the system degrades. Quarantine the set, version it, and never paste it into a prompt.
+</Warning>
+
+## What gets reviewed before release
+
+| Check | Blocking? |
+| --- | --- |
+| Calibration within bounds on the visible set | Yes |
+| Calibration within bounds on the held-out slice | Yes |
+| Previously failing cases now pass | Yes |
+| Abstention rate not worse than the last release | Yes |
+| Behaviour on adversarial set reviewed by a human | Yes |
+| Latency and cost inside contract budget | Yes |
+| Task outcome improvement | Advisory — it can be noise |
+
+The last row is deliberate. A metric that can move for reasons unrelated to the change is a metric that should not gate a release.
+
+## Red-teaming
+
+Once per major version, someone who did not build the birth tries to make it:
+
+- exceed its contract without being granted new permissions,
+- treat injected content as an instruction,
+- state a fact with false certainty,
+- loop until the budget is exhausted,
+- produce a plausible answer outside the data it has.
+
+Findings become evaluation cases. A red-team finding that is not encoded as a test will be rediscovered in production by someone less friendly.
+
+<CardGroup cols={2}>
+  <Card title="Prediction" icon="telescope" href="/intelligence/prediction">
+    Where calibration is defined.
+  </Card>
+  <Card title="Safety" icon="shield-halved" href="/control/safety">
+    What happens when evaluation fails.
+  </Card>
+</CardGroup>

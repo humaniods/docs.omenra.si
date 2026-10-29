@@ -1,0 +1,88 @@
+---
+title: "Safety"
+description: "Four control surfaces on every birth: autonomy, containment, audit, kill switch."
+icon: "shield-halved"
+---
+
+The premise of this company — minds that are unpredictable inside contracts that are not — only holds if the contract is real. This page is what "real" means operationally.
+
+## The four control surfaces
+
+Every birth ships with all four. A birth missing one is not shippable, regardless of how well it performs.
+
+| Surface | Question | Where it lives |
+| --- | --- | --- |
+| **Autonomy** | How much may it do without asking? | Contract, enforced at dispatch |
+| **Containment** | What can it physically reach? | Runtime: credentials, network, filesystem |
+| **Audit** | What did it do, and why? | Trace, immutable, retained |
+| **Kill switch** | How do we stop it, now? | One action, no approval chain |
+
+## Containment is not a prompt
+
+The distinction that matters: instructions in a prompt are requests, and a sufficiently capable system can be argued out of a request. Containment is what happens when reasoning fails.
+
+So containment is implemented below the reasoning layer:
+
+- **Credentials are scoped per birth**, minted at dispatch and expiring with the run. There is no "agent service account" with broad access.
+- **Network egress is allow-listed per birth.** An agent that reads tickets does not need to reach the internet, so it cannot.
+- **Filesystem and database access are permissions, not conventions.** A tool that is not in the contract cannot be called, because the credential for it was never issued.
+- **Irreversible actions sit behind an approval gate in code**, not in a guideline. The gate does not consult the agent's own judgement about whether the gate applies.
+
+<Warning>
+  If a security property depends on the model choosing correctly, it is not a security property. It is a hope with a latency budget.
+</Warning>
+
+## The kill switch
+
+One control, available to a named set of humans, that:
+
+1. stops the run at the next tool boundary,
+2. revokes the birth's credentials,
+3. cancels queued work and child agents,
+4. freezes memory writes,
+5. preserves the trace for review.
+
+It does **not** require a meeting, a second approver, or a deploy. A kill switch with a process is a kill switch that gets used late.
+
+There is also a **global stop**: every birth, every swarm, every schedule. It should be tested on a schedule, because discovering that it does not work during an incident is the worst possible time to learn.
+
+## Audit
+
+Every action records: what was called, with what arguments, under which contract, at what autonomy level, on whose behalf, and what came back.
+
+Two properties make an audit trail useful rather than decorative:
+
+**It is append-only.** A log the agent can edit is a story, not evidence.
+
+**It reconstructs the decision.** The trace must show the prediction that motivated the action, not just the action. "It sent the email" is less useful than "it predicted a 0.83 chance the customer would churn, chose the retention offer, and sent it."
+
+## Failure boundaries
+
+Systems fail in four ways, and each needs a designed response:
+
+| Failure | Example | Response |
+| --- | --- | --- |
+| **Bad judgement** | Confident wrong prediction | Calibration thresholds; escalate below confidence |
+| **Bad permission** | Calls a tool it should not have | Credentials never issued; deny at dispatch |
+| **Bad input** | Injected instructions in a document | Tool output is data, never authority |
+| **Bad world** | The external system behaves unusually | Bounded retries, then stop and escalate |
+
+The fourth is the one teams forget. An agent that keeps retrying a failing payment API at 3am is not resilient; it is amplifying an outage.
+
+## What we will not build
+
+Stated plainly, because a safety page that refuses nothing is marketing:
+
+- **Autonomous lethal action.** No birth may select and engage a human target, at any autonomy level, under any contract.
+- **Predictions about identifiable people used to deny them credit, employment, insurance or liberty.** The statistics are not the problem; the deployment is.
+- **Systems that act to influence an election or a political process.**
+- **Self-modifying autonomy.** A birth may not raise its own autonomy level, widen its own scope, or issue its own credentials. Those are human actions with a name attached.
+
+<CardGroup cols={2}>
+  <Card title="Governance" icon="scale-balanced" href="/control/governance">
+    Who grants what, and how it is reviewed.
+  </Card>
+  <Card title="Autonomy" icon="gauge" href="/intelligence/autonomy">
+    The ladder and its evidence.
+  </Card>
+</CardGroup>

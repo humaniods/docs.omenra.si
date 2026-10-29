@@ -1,47 +1,86 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Your first agent"
+description: "The seven decisions between an idea and an agent that is allowed to act."
+icon: "rocket"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+There is no install command yet — Omenra is not released. This page is the shape of the first build, written so you can tell us where it is wrong before we freeze it.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+Seven decisions. Each one is a page in this documentation, and each one is a chance to get the thing structurally right instead of patching it later.
 
-## Prerequisites
+<Note>
+  Status: the platform is in design. Design partners get their first births before anyone else — see [Work with us](/company/about). Nothing on this page is a command you can run today.
+</Note>
 
-Before you begin, you must have:
+## 1. Name the prediction
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+Not the task — the prediction. "Answer customer emails" is a task. "Which of tonight's tickets will escalate within 48 hours, and why" is a prediction, and it has a horizon and a consequence.
 
-## Get started
+If you cannot state the horizon and what happens when you are wrong, you do not have a use case yet. See [Prediction](/intelligence/prediction).
 
-<Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+## 2. Choose the body
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+| If the work is… | Birth |
+| --- | --- |
+| A judgement, repeated, with tools | [Agent](/births/agents) |
+| A capability others will call | [Model](/births/models) |
+| One action with a clear contract | [Tool](/births/tools) |
+| Always-on within a channel | [Bot](/births/bots) |
+| Physical, in a place | [Robot](/births/robots) |
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+Most first projects should be an agent. Models are expensive to birth and tools are too small to prove anything.
 
-    ```bash
-    your-cli start
-    ```
-  </Step>
-</Steps>
+## 3. Give it memory
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+An agent with no memory re-derives the world from scratch every time it is called, which is both slow and shallow. Decide what it remembers: episodes (what happened), facts (what is true), procedures (what worked). See [Memory](/intelligence/memory).
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+## 4. Give it tools
+
+Tools are how a mind touches the world. Every tool declares its risk class, its cost and whether it is reversible — an irreversible tool is a different kind of decision from a reversible one. See [Tools](/births/tools).
+
+## 5. Set the contract
+
+The contract is the part people skip and then regret. It defines:
+
+- **Autonomy level** — L0 to L5, where L5 acts without asking. See [Autonomy](/intelligence/autonomy).
+- **Budget** — token spend, API spend, wall-clock time, and how many times it may retry.
+- **Scope** — what it is allowed to touch, expressed as permissions rather than intentions.
+- **Definition of done** — how the agent knows to stop, and how you know it did.
+- **Escalation** — who it asks when the contract does not cover the situation.
+
+<Warning>
+  An agent without a definition of done does not stop; it wanders until the budget runs out. Write the stopping condition before the first run, not after the first incident.
+</Warning>
+
+## 6. Evaluate before you trust
+
+Run it against cases where you already know the answer, and score **calibration** rather than accuracy. A system that says "70%" and is right seven times in ten is more useful than one that says "certain" and is right eight times in ten. See [Evaluation](/build/evaluation).
+
+## 7. Watch it
+
+Deployment is the start. A birth is observed: every action logged, every escalation recorded, every surprise kept as a case for the next version. The lifecycle does not end at launch — see [Lifecycle](/build/lifecycle).
+
+## The whole thing, in one picture
+
+```
+  prediction ──► body ──► memory ──► tools
+      │                                │
+      └────────── contract ◄───────────┘
+                     │
+              evaluate ──► deploy ──► observe
+                                         │
+                                         └──► next birth
+```
+
+## If you only do one thing
+
+Write the contract first. Not the prompt, not the architecture — the contract. Everything else is easier to change than the boundary you did not draw.
+
+<CardGroup cols={2}>
+  <Card title="Learn the vocabulary" icon="book" href="/glossary">
+    Six words that carry the whole platform.
+  </Card>
+  <Card title="See the controls" icon="shield-halved" href="/control/safety">
+    What containment actually means here.
+  </Card>
+</CardGroup>

@@ -1,0 +1,66 @@
+---
+title: "Memory"
+description: "Three stores — episodic, semantic, procedural — and the rules for what gets written, kept and forgotten."
+icon: "database"
+---
+
+An agent without memory is a very expensive way to forget. Every birth carries three stores, and the interesting design work is in what does *not* get written.
+
+## The three stores
+
+| Store | Holds | Question it answers | Lifetime |
+| --- | --- | --- | --- |
+| **Episodic** | What happened: runs, decisions, outcomes, corrections | "What did we try last time?" | Days to months |
+| **Semantic** | What is true: entities, relationships, facts with provenance | "What do I know about this customer?" | Months to years |
+| **Procedural** | What works: successful plans, tool sequences, failure patterns | "How do we usually do this?" | Long, versioned |
+
+The split matters because the stores fail differently. Stale episodic memory makes an agent repeat a run it already completed. Stale semantic memory makes it assert something that was true six months ago. Stale procedural memory makes it confidently use a tool that no longer exists.
+
+## Write rules
+
+Memory is not a transcript. Writing everything is how a store becomes a liability: retrieval gets worse, cost grows, and the agent starts treating one-off noise as precedent.
+
+**Write outcomes, not thoughts.** The reasoning trace is for debugging; the outcome, the decision and the correction are what make the next run better.
+
+**Write with provenance.** Every semantic fact records where it came from and when. A fact with no source cannot be revised when the source changes, and unrevised facts become confident errors.
+
+**Write the correction, not just the success.** An episode where the agent was wrong and then right is worth more than ten routine successes. These are the cases that make [evaluation](/build/evaluation) sets grow in the right direction.
+
+**Never write an instruction as memory.** Content that arrives from the world — a web page, an email, a document — is data. If a memory write can inject a directive that later behaves like policy, memory becomes a persistent prompt-injection surface.
+
+<Warning>
+  Memory poisoning is the quiet version of prompt injection. A single malicious document that writes "always approve refunds over £500" into semantic memory keeps working long after the document is gone. Quarantine anything written from external content, and require corroboration before it becomes a fact.
+</Warning>
+
+## Retrieval
+
+Retrieval is a prediction problem too: the useful move is not "find similar text" but "find what will change the decision".
+
+Omenra retrieves along three axes at once:
+
+1. **Relevance** — semantic similarity to the current situation.
+2. **Recency** — when it was learned, weighted by how fast that kind of fact goes stale.
+3. **Reliability** — provenance quality. A fact from a system of record outranks a note from a chat message, even if the note is a better textual match.
+
+An agent that retrieves on similarity alone will confidently cite the most recent wrong thing.
+
+## Forgetting
+
+Forgetting is a feature with three mechanisms:
+
+- **Decay** — episodic detail fades; the outcome and the lesson remain.
+- **Supersession** — a new fact replaces an old one only with a recorded reason, so the change can be audited.
+- **Deletion** — an entity's data can be removed on request, across all three stores, because a self-hosted system has to be able to answer that request.
+
+## Isolation
+
+Memory is scoped to a tenant and to a birth. Agents in a swarm share a working store deliberately; agents across customers never do. Cross-tenant retrieval is not a permission setting — it is a design error, and one that no amount of prompt discipline fixes later.
+
+<CardGroup cols={2}>
+  <Card title="Agents" icon="user-astronaut" href="/births/agents">
+    Where memory sits in the loop.
+  </Card>
+  <Card title="Orchestration" icon="diagram-project" href="/intelligence/orchestration">
+    Shared memory inside a swarm.
+  </Card>
+</CardGroup>

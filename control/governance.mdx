@@ -1,0 +1,81 @@
+---
+title: "Governance"
+description: "Who may grant autonomy, what gets reviewed, and how a decision is recorded."
+icon: "scale-balanced"
+---
+
+Safety is engineering. Governance is who is allowed to decide, and how you prove afterwards that they did.
+
+The rule that keeps this simple: **no birth grants itself anything.** Every permission, every level, every widening is a human action with a name attached.
+
+## Who may do what
+
+| Action | Who may do it |
+| --- | --- |
+| Birth an agent at L1–L2, R0/R1 tools | Builder |
+| Raise autonomy to L3–L4 | Owner of the business process |
+| Any L5, or any R3 tool | Platform owner, with a written scope |
+| Change a contract's scope | The person accountable for the affected system |
+| Use the kill switch | Anyone in the on-call rotation, unilaterally |
+| Override a refusal or a gate | Nobody — the gate is code, not policy |
+
+The asymmetry between "raise autonomy" and "stop everything" is deliberate. Granting capability should be deliberative and slightly annoying. Withdrawing it must be trivial and instant.
+
+## The review gate
+
+Before a birth touches real work:
+
+<Steps>
+  <Step title="Remit review">
+    Someone who did not write it restates the remit in one paragraph. If they cannot, it is not defined well enough to evaluate.
+  </Step>
+  <Step title="Contract review">
+    Autonomy, budget, scope, tools, done-condition, escalation. Reviewed as a security artefact, not a config file.
+  </Step>
+  <Step title="Evaluation review">
+    Calibration and coverage inside bounds, adversarial cases reviewed, held-out slice passed. See [Evaluation](/build/evaluation).
+  </Step>
+  <Step title="Recorded decision">
+    Who approved, at what level, with what scope, on what evidence. One row, permanently.
+  </Step>
+</Steps>
+
+## Data
+
+- **Tenant isolation** is structural. Memory, traces and credentials are scoped per tenant; cross-tenant retrieval is not a setting because it should not be possible.
+- **Retention is declared.** Episodic detail, semantic facts and traces have different lifetimes, and every birth states them.
+- **Deletion is answerable.** A request to remove an entity is executable across all three memory stores and the trace index, because a self-hosted system must be able to honour it.
+- **Personal data is minimised.** A forecaster rarely needs to know who a person is to predict what a system will do. Where identity is not the signal, it is not stored.
+
+## Transparency
+
+When Omenra acts on someone's behalf, that person can find out:
+
+- that a birth was involved,
+- what prediction drove the action,
+- what it was permitted to do,
+- who was accountable for the contract.
+
+An automated decision that cannot be attributed to a contract and a person is not permitted to affect anyone outside the organisation.
+
+## Incidents
+
+An incident is any case where a birth acted outside its contract, caused harm, or produced a consequence a human had to undo. Incidents are:
+
+1. **stopped** first, investigated second,
+2. **written up** within the week, including the trace,
+3. **encoded as an evaluation case** so the same failure cannot return quietly,
+4. **published internally** — a near-miss nobody hears about is a near-miss that happens twice.
+
+<Note>
+  This page describes the governance model Omenra holds itself and its design partners to. As with the rest of this documentation, it is the standard we are building to, not a certificate we have earned.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Safety" icon="shield-halved" href="/control/safety">
+    The engineering underneath.
+  </Card>
+  <Card title="Work with us" icon="handshake" href="/company/about">
+    Design partners and how the first cohort works.
+  </Card>
+</CardGroup>

@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.mintlify/
+
+# superseded docs from an earlier, wrong draft — kept locally only
+archive/
+
+# scratch pages used to inspect brand assets
+_brand-check.html

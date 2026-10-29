@@ -1,0 +1,59 @@
+---
+title: "Roadmap"
+description: "What is being built now, next and later — and what would change the order."
+icon: "map"
+---
+
+This is a direction, not a schedule. It is ordered by dependency, because most of what looks like a choice here is actually a prerequisite.
+
+## Now — the vocabulary and the first birth
+
+- **Contract model.** Autonomy levels, budgets, scope, done-conditions and escalation, written down and enforced at dispatch.
+- **Agent runtime.** The observe → predict → act loop with memory, tool dispatch and a trace that reconstructs decisions.
+- **First forecaster.** One narrow, high-frequency domain where calibration can be measured honestly within weeks.
+- **Evaluation harness.** Reliability curves, coverage, abstention scoring, held-out slices.
+
+The first forecaster matters more than it looks. Everything else in this company is a claim until a calibration curve exists and is real.
+
+## Next — the body
+
+- **Tool registry** with risk classes and reversibility, so permissions follow actions rather than agents.
+- **Bots** in real channels: triage, intake, status. Read-only first, always.
+- **Swarm orchestration** with an arbiter, budget at the arbiter, and cancellation that propagates.
+- **Second and third forecasters** in different horizons — the interesting question is whether one proficiency transfers.
+
+## Later — the hard parts
+
+- **Embodiment.** Simulation-first, supervised, with the safety envelope in the control loop. Deliberately last: a physical mistake is the only kind that cannot be rolled back.
+- **Self-hosted deployment** for partners whose data cannot leave their network.
+- **Multi-tenant platform** with structural isolation, for organisations running many births at once.
+- **Long-horizon forecasting.** The most ambitious and least evidenced. It ships when it calibrates, not when it demos.
+
+## What would change the order
+
+A roadmap that cannot be reordered is a fantasy. Three things would move it:
+
+| If this happens | Then |
+| --- | --- |
+| General models get cheap and good at tool use faster than expected | Move to orchestration and evaluation sooner; build fewer specialist models |
+| Calibration proves harder to hold in production than in evaluation | Everything stops until drift detection is solved |
+| A design partner brings a problem that needs embodiment first | Embodiment moves up, with the safety envelope shipped ahead of it |
+
+## What we deliberately do not ship
+
+- A general-purpose assistant. The market is well served, and "chat with your data" is not a prediction.
+- An autonomous agent with no contract surface, however impressive the demo.
+- Anything in the [refusal list](/control/safety#what-we-will-not-build).
+
+<Note>
+  Dates are omitted on purpose. A roadmap with a calendar invites the question "is it late?" instead of "is it right?" — and for a platform defining its own vocabulary, right matters more.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Work with us" icon="handshake" href="/company/about">
+    Design partners get the first births.
+  </Card>
+  <Card title="Vision" icon="telescope" href="/vision">
+    Why this order, and what would make us wrong.
+  </Card>
+</CardGroup>

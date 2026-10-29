@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 64 64" role="img" aria-label="Omenra">
+  <title>Omenra</title>
+  <style>
+    .orbit { transform-origin: 32px 32px; animation: orbit 26s linear infinite; }
+    .stars { transform-origin: 32px 32px; animation: drift 90s linear infinite; }
+    .craft { transform-origin: 32px 22px; animation: level 26s linear infinite; }
+    .tilt  { transform-origin: 32px 22px; animation: tilt 7s ease-in-out infinite alternate; }
+    .orbit, .stars, .craft, .tilt { transform-box: view-box; }
+    .twinkle { animation: twinkle 3.6s ease-in-out infinite; }
+    .twinkle-2 { animation: twinkle 5.2s ease-in-out -1.4s infinite; }
+
+    @keyframes orbit  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+    @keyframes drift  { from { transform: rotate(0deg); }   to { transform: rotate(360deg); } }
+    @keyframes level  { from { transform: rotate(0deg); }   to { transform: rotate(-360deg); } }
+    @keyframes tilt   { from { transform: rotate(-9deg); }  to { transform: rotate(9deg); } }
+    @keyframes twinkle { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orbit, .stars, .craft, .tilt, .twinkle, .twinkle-2 { animation: none; }
+      .twinkle, .twinkle-2 { opacity: .75; }
+    }
+  </style>
+
+  <defs>
+    <clipPath id="sky"><circle cx="32" cy="32" r="20.5" /></clipPath>
+  </defs>
+
+  <circle cx="32" cy="32" r="32" fill="#3b5bff" />
+  <circle cx="32" cy="32" r="20.5" fill="#0b1020" />
+  <circle cx="32" cy="32" r="20.5" fill="none" stroke="#8fa5ff" stroke-opacity=".18" stroke-width=".6" />
+
+  <g class="stars">
+    <circle class="twinkle" cx="25.2" cy="26.8" r=".75" fill="#d7dcea" />
+    <circle cx="40.4" cy="24.2" r=".55" fill="#b9c2d6" />
+    <circle class="twinkle-2" cx="42.6" cy="37.2" r=".8" fill="#d7dcea" />
+    <circle cx="23.4" cy="36.6" r=".5" fill="#aab4cc" />
+    <circle cx="35.6" cy="44.4" r=".65" fill="#d7dcea" />
+    <circle cx="30.2" cy="18.4" r=".45" fill="#8f9ab3" />
+  </g>
+
+  <g class="orbit" clip-path="url(#sky)">
+    <g class="craft">
+      <g class="tilt">
+        <g transform="translate(32 22)">
+          <path d="M -2.6 4.6 C -4.6 5.4 -6.2 6.4 -5.6 7.6"
+                fill="none" stroke="#cf9a63" stroke-width=".7"
+                stroke-linecap="round" stroke-opacity=".9" />
+          <rect x="-3.7" y="-2.2" width="2.4" height="5.2" rx=".9" fill="#c8d0e0" />
+          <rect x="-2.2" y="-2.4" width="4.4" height="5.6" rx="1.7" fill="#f5f6f8" />
+          <rect x="-4.9" y="-.6" width="2.6" height="1.5" rx=".75" fill="#e4e9f2" />
+          <rect x="2.3" y="-1.5" width="2.6" height="1.5" rx=".75" fill="#e4e9f2" />
+          <rect x="-1.8" y="2.6" width="1.7" height="2.9" rx=".85" fill="#eef1f6" />
+          <rect x=".3" y="2.4" width="1.7" height="3.1" rx=".85" fill="#eef1f6" />
+          <rect x="-1.9" y="5" width="1.9" height=".9" rx=".45" fill="#9aa4bd" />
+          <rect x=".2" y="5" width="1.9" height=".9" rx=".45" fill="#9aa4bd" />
+          <circle cx="0" cy="-4" r="2.5" fill="#f5f6f8" />
+          <ellipse cx="0" cy="-3.9" rx="1.6" ry="1.35" fill="#16204a" />
+          <circle cx="-.5" cy="-4.3" r=".3" fill="#f5f6f8" fill-opacity=".55" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+---
+title: "Autonomy"
+description: "L0 to L5, and why the level is a property of the contract rather than the model."
+icon: "gauge"
+---
+
+Autonomy is the single most consequential setting in a birth. It decides whether a prediction becomes advice, a draft, an action, or an incident.
+
+## The ladder
+
+| Level | Name | What the agent does | Human role | Typical use |
+| --- | --- | --- | --- | --- |
+| **L0** | Observe | Watches, records, says nothing | None | Instrumentation, data collection |
+| **L1** | Suggest | Proposes a prediction or action | Decides everything | Early forecasting, advisory tools |
+| **L2** | Draft | Prepares the full action for approval | One approve/reject per action | Email, code change, ticket response |
+| **L3** | Act with review | Acts, then reports; a human can reverse | Review afterwards | Reversible writes, internal ops |
+| **L4** | Act within scope | Acts freely inside a named scope and budget | Exception handling | Established workflows, R1 tools |
+| **L5** | Act, report | Acts at its own discretion, reports on a cadence | Audit only | Only where the cost of error is bounded and known |
+
+Two rules that are not negotiable:
+
+**Autonomy is never above the contract.** An L5 label does not authorise an R3 action; irreversible actions always require an explicit gate. See [Tools](/births/tools) for the risk classes.
+
+**Autonomy is per action class, not per agent.** A support agent might be L5 for tagging, L3 for refunds under £50 and L2 for anything above. One number for a whole agent invites the wrong kind of trust.
+
+## Earning the level
+
+Autonomy is granted on evidence, in a fixed order:
+
+<Steps>
+  <Step title="Shadow (L0–L1)">
+    The agent predicts alongside a human deciding. Nobody acts on it. You are measuring calibration and surprise.
+  </Step>
+  <Step title="Draft (L2)">
+    Accuracy is acceptable and the human is mostly clicking approve. You are measuring how often the human changes the answer — that rate is the real cost of the agent.
+  </Step>
+  <Step title="Reviewed action (L3–L4)">
+    Reversibility is high and the review rate has fallen. You are measuring exceptions.
+  </Step>
+  <Step title="Unsupervised (L5)">
+    Only where the blast radius is bounded by construction: a budget cap, an irreversible-action gate and a kill switch all in place.
+  </Step>
+</Steps>
+
+Moving a level up is a decision with a name attached. Moving it down is always allowed, immediately, by anyone with the authority over that scope — a demotion that requires a meeting will not happen at 3am when it is needed.
+
+## Budgets are part of autonomy
+
+An agent with L5 and no budget is not autonomous, it is unbounded. Every contract carries:
+
+- **Spend** — money per run and per day.
+- **Time** — wall clock, and what happens on timeout.
+- **Iterations** — how many attempts before it must escalate.
+- **Blast radius** — how many entities a single run may touch.
+
+When the budget runs out the agent stops and escalates. It does not degrade into an unaudited mode, and it does not "just finish" the last step.
+
+## Escalation
+
+Escalation is a first-class action, not an error. An agent escalates when:
+
+- the situation is outside its remit,
+- the action it needs is a higher risk class than its contract allows,
+- confidence is below the threshold its contract names,
+- the cost of being wrong exceeds the value of being fast.
+
+A well-designed agent escalates early and cheaply. An agent that escalates never is not confident; it is out of control, and you find out at the consequence rather than at the decision.
+
+<Note>
+  The honest summary of this page, and of the company: **unpredictable minds, predictable contracts.** The agent may find a strategy nobody anticipated. It may not find a permission nobody granted.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Safety" icon="shield-halved" href="/control/safety">
+    Containment, audit, kill switch.
+  </Card>
+  <Card title="Governance" icon="scale-balanced" href="/control/governance">
+    Who may grant which level.
+  </Card>
+</CardGroup>

@@ -1,0 +1,82 @@
+---
+title: "Orchestration"
+description: "Several agents on one problem: roles, an arbiter, shared memory, and the failure modes to design against."
+icon: "diagram-project"
+---
+
+One agent is a mind. Several agents on one problem is an organisation, and organisations fail in ways individuals do not: they agree too easily, they duplicate work, and they burn budget arguing.
+
+Orchestration is the discipline of not letting that happen.
+
+## When a swarm is worth it
+
+Use one agent when:
+
+- the problem fits in one context,
+- the tool set is small,
+- nobody needs to disagree with anybody.
+
+Use a swarm when:
+
+- the problem is **wide** — many independent sub-questions that can run in parallel (review 400 contracts, triage 5,000 alerts),
+- the problem needs **adversarial review** — a critic that has not seen the author's reasoning,
+- different parts of the problem need **different tools, memory or models** with genuinely different cost profiles.
+
+<Warning>
+  The most common orchestration mistake is using a swarm to compensate for one agent's poor remit. Three confused agents are three times as confused. Split by sub-problem, not by hope.
+</Warning>
+
+## Three patterns that work
+
+**Fan-out / fan-in.** A planner splits the work, N workers run independently, an aggregator merges. Best for wide, independent problems. The aggregator is the quality ceiling: it must be able to say "these two results contradict each other" rather than averaging them.
+
+**Critic.** One agent produces, a second reviews with no access to the first's reasoning — only the output and the specification. Independent review catches errors that self-review rationalises. The critic must be able to reject, not just comment.
+
+**Planner / worker with an arbiter.** A planner sequences work; workers execute; an arbiter resolves conflicts and holds the shared state. Best when sub-tasks are sequential and depend on each other. The arbiter is the only agent allowed to write shared memory.
+
+## The arbiter
+
+Every swarm needs exactly one entity that decides what is true when agents disagree. Without it, the swarm produces two answers and a bill.
+
+The arbiter holds:
+
+- the **shared state** — the single version of the current understanding,
+- the **resolution rule** — evidence-weighted, not democratic; three agents agreeing on a wrong fact is still wrong,
+- the **budget** — it allocates spend, which is what stops a swarm from quietly running for six hours.
+
+<Note>
+  A human can be the arbiter. For consequential decisions this is the correct default: the swarm resolves what it can and escalates what it cannot, exactly as a single agent would.
+</Note>
+
+## Shared memory in a swarm
+
+Workers write to a **working store** scoped to the run. The arbiter promotes what matters to long-term memory.
+
+This staging step exists because workers are the least reliable writers in the system: a hallucination written directly to semantic memory becomes a fact that every later run inherits. Promotion is where quality control happens.
+
+## Failure modes to design against
+
+| Failure | What it looks like | Fix |
+| --- | --- | --- |
+| **Groupthink** | Agents converge on the first plausible answer and stop exploring | Independent runs before aggregation; a critic with no shared context |
+| **Echo** | Agents cite each other as evidence | Provenance on every claim; independent sources only |
+| **Loop** | Two agents hand a task back and forth | Hard iteration cap, and an arbiter that can declare failure |
+| **Cost explosion** | Fan-out of 40, each spawning 40 | Budget at the arbiter, not per worker |
+| **Orphan orders** | Workers act after the plan is abandoned | Cancellation propagates; a cancelled run cannot write |
+| **Majority fallacy** | Five workers agree because four copied one | Weight by evidence, never by headcount |
+
+## Cost
+
+A swarm multiplies cost faster than it multiplies quality. Two useful heuristics:
+
+1. **Cheap fan-out, expensive fan-in.** Run many cheap workers and one strong aggregator, rather than many strong workers and a weak merge.
+2. **Stop on consensus, not on exhaustion.** If the first four of twelve workers agree and the arbiter has high confidence, cancel the rest. Paying for agreement you already have is the most common waste.
+
+<CardGroup cols={2}>
+  <Card title="Memory" icon="database" href="/intelligence/memory">
+    The stores a swarm shares.
+  </Card>
+  <Card title="Evaluation" icon="flask" href="/build/evaluation">
+    How to tell whether the swarm is actually better.
+  </Card>
+</CardGroup>

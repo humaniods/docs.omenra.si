@@ -1,0 +1,77 @@
+---
+title: "Agents"
+description: "A mind with memory, tools and a contract, pursuing a goal across many steps."
+icon: "user-astronaut"
+---
+
+An agent is the default birth. If you are unsure which of the five to create, the answer is almost always an agent.
+
+## What makes something an agent
+
+Four parts, all required:
+
+| Part | Answers | Without it |
+| --- | --- | --- |
+| **Goal** | What outcome am I pursuing? | It performs actions with no reason to stop |
+| **Memory** | What do I already know? | It re-derives the world on every turn |
+| **Tools** | How do I change anything? | It can only talk |
+| **Contract** | What am I allowed to do? | It becomes a hazard with a credit card |
+
+A model with a prompt and no tools is not an agent; it is a very good paragraph generator. A script with tools and no goal is not an agent either; it is automation. The agent is the thing that holds all four at once and re-plans when reality disagrees with its plan.
+
+## The loop
+
+```
+observe ──► predict ──► act ──► observe
+   ▲                              │
+   └──────── memory ◄─────────────┘
+```
+
+Read the loop as a prediction loop, not a task loop. At every turn the agent predicts: *what happens if I do this?* The action is the experiment; the observation is the result; the memory update is what makes the next prediction better.
+
+This is why Omenra's agents beat fixed pipelines on messy problems and lose to them on clean ones. If the process is genuinely deterministic, write a workflow — it is cheaper, faster and easier to audit. Agents earn their cost when the situation is ambiguous and the tool choice is not obvious in advance.
+
+## Composing an agent
+
+Every agent is born from the same five declarations:
+
+**Remit.** One paragraph, in plain language, describing the job. If the remit needs the word "and" more than twice, it is two agents.
+
+**Tools.** Only the tools it needs, and only at the risk class it needs. An agent that can deploy to production does not need that ability to triage a ticket.
+
+**Memory.** What it reads at start, what it writes, and how long each store lives. See [Memory](/intelligence/memory).
+
+**Contract.** Autonomy level, budget, scope, definition of done, escalation. See [Autonomy](/intelligence/autonomy).
+
+**Evaluation set.** The cases it must pass before it is allowed to act. See [Evaluation](/build/evaluation).
+
+## What agents are good at
+
+- Problems where the tool choice depends on what you find along the way.
+- Situations that require reading context no one wrote down.
+- Work that repeats in shape but not in detail — vendor security reviews, incident triage, quarterly account planning, defect reproduction.
+
+## What agents are bad at
+
+- Anything requiring perfect determinism. Use a workflow.
+- Anything where the cost of one bad action exceeds the value of a thousand good ones.
+- Anything where "it tried its best" is not an acceptable answer — regulated decisions with a legal right of appeal, for example.
+
+<Warning>
+  The most common failure we see designed into agents is a wide permission set justified by "it might need it". An agent's permissions are a security boundary, not a convenience setting. Grant the narrowest set that completes the remit, and escalate when the contract does not cover the case.
+</Warning>
+
+## Agent-to-agent
+
+Agents can call other agents. This is powerful and easy to overuse: three agents that each call two others turn one audit trail into a tree nobody can follow.
+
+The rule we use: an agent may delegate a **sub-goal** but not its **contract**. A delegated agent inherits the caller's scope, never a wider one. If a sub-goal needs more permission than the caller holds, the caller escalates — it does not hand over authority it does not have.
+
+<CardGroup cols={2}>
+  <Card title="Orchestration" icon="diagram-project" href="/intelligence/orchestration">
+    When several agents work one problem.
+  </Card>
+  <Card title="Models" icon="microchip" href="/births/models">
+    The capabilities an agent calls.
+  </Card>
+</CardGroup>

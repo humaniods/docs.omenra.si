@@ -1,0 +1,67 @@
+---
+title: "Bots"
+description: "An always-on agent bound to a channel: narrow remit, small budget, high visibility."
+icon: "robot"
+---
+
+A bot is an agent with a home. It lives in a chat room, an inbox, a queue, a stream — somewhere people or systems already are — and it stays there.
+
+The difference from an agent is not intelligence. It is **presence**: a bot is always on, always scoped, and expected to answer within seconds.
+
+## What makes a bot a bot
+
+| Property | Meaning |
+| --- | --- |
+| **Channel-bound** | It has one address. It does not roam; it is summoned where it lives. |
+| **Narrow** | One remit, small enough to fit in a paragraph. |
+| **Fast** | Seconds, not minutes. A slow bot is a bot people stop using. |
+| **Cheap** | Small budget per interaction, capped per day. |
+| **Public** | Its mistakes are visible to everyone in the channel, which is a design constraint. |
+
+That last one is why bots are a distinct birth rather than "agents with a UI". A wrong agent answer in a private run is a bad decision. A wrong bot answer in a 200-person channel is a false statement with witnesses.
+
+## Good first bots
+
+- **Triage bot** — in an alerts channel, posts the prediction, the confidence and the two actions worth considering.
+- **Standup bot** — in a team channel, summarises what changed overnight that actually matters, with links.
+- **Intake bot** — in a shared inbox, classifies, extracts the essentials and routes, with an explicit "I am not sure" path.
+- **Status bot** — in an ops channel, answers "is it us?" by reading real telemetry rather than guessing.
+
+Each of these is a **read-and-summarise** job. Bots that take consequential actions exist, but they should be born after the read-only version has earned trust in the same channel.
+
+## The bot contract
+
+A bot's contract is the same five fields as any agent, plus three that are specific to living in public:
+
+**Reply policy.** When it answers, when it reacts silently, when it says "I don't know" and when it escalates to a human. Silence is a legitimate response and should be designed, not accidental.
+
+**Attribution.** Every message makes clear it is from the bot. A bot that impersonates a person in a channel is a social engineering tool, whether or not that was the intent.
+
+**Retention.** What it logs, for how long, and whether channel members can see what it remembered about them. People behave differently when they know the room is being remembered.
+
+<Warning>
+  Never give a bot credentials to act on behalf of the person who is talking to it. The bot's permissions are the bot's, and they are the same for every participant in the channel. A bot that borrows the asker's authority turns a public channel into a privilege escalation path.
+</Warning>
+
+## Bots versus agents, concretely
+
+The same prediction behind both, differently dressed:
+
+| | Agent | Bot |
+| --- | --- | --- |
+| Trigger | Goal assigned, runs to completion | Message or event arrives |
+| Duration | Minutes to hours | Seconds |
+| Budget | Task-sized | Interaction-sized |
+| Failure | Roll back, retry, report | Answer badly, visibly, now |
+| Who sees it | Whoever reads the trace | Everyone in the room |
+
+If your bot needs an hour and a plan, it is not a bot — spawn an agent from the channel and report back when it finishes. Keeping that distinction prevents the most common bot failure: a chat interface to something that was never going to answer in ten seconds.
+
+<CardGroup cols={2}>
+  <Card title="Agents" icon="user-astronaut" href="/births/agents">
+    The general case.
+  </Card>
+  <Card title="Robots" icon="robot" href="/births/robots">
+    When the body is physical.
+  </Card>
+</CardGroup>
