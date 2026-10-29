@@ -29,7 +29,7 @@ observe ──► predict ──► act ──► observe
 
 Read the loop as a prediction loop, not a task loop. At every turn the agent predicts: *what happens if I do this?* The action is the experiment; the observation is the result; the memory update is what makes the next prediction better.
 
-This is why Omenra's agents beat fixed pipelines on messy problems and lose to them on clean ones. If the process is genuinely deterministic, write a workflow — it is cheaper, faster and easier to audit. Agents earn their cost when the situation is ambiguous and the tool choice is not obvious in advance.
+This is why Omenra's agents beat fixed pipelines on messy problems and lose to them on clean ones. If the process is genuinely deterministic, write a workflow. It is cheaper, faster and easier to audit. Agents earn their cost when the situation is ambiguous and the tool choice is not obvious in advance.
 
 ## Composing an agent
 
@@ -49,13 +49,13 @@ Every agent is born from the same five declarations:
 
 - Problems where the tool choice depends on what you find along the way.
 - Situations that require reading context no one wrote down.
-- Work that repeats in shape but not in detail — vendor security reviews, incident triage, quarterly account planning, defect reproduction.
+- Work that repeats in shape but not in detail: vendor security reviews, incident triage, quarterly account planning, defect reproduction.
 
 ## What agents are bad at
 
 - Anything requiring perfect determinism. Use a workflow.
 - Anything where the cost of one bad action exceeds the value of a thousand good ones.
-- Anything where "it tried its best" is not an acceptable answer — regulated decisions with a legal right of appeal, for example.
+- Anything where "it tried its best" is not an acceptable answer: regulated decisions with a legal right of appeal, for example.
 
 <Warning>
   The most common failure we see designed into agents is a wide permission set justified by "it might need it". An agent's permissions are a security boundary, not a convenience setting. Grant the narrowest set that completes the remit, and escalate when the contract does not cover the case.
@@ -65,7 +65,7 @@ Every agent is born from the same five declarations:
 
 Agents can call other agents. This is powerful and easy to overuse: three agents that each call two others turn one audit trail into a tree nobody can follow.
 
-The rule we use: an agent may delegate a **sub-goal** but not its **contract**. A delegated agent inherits the caller's scope, never a wider one. If a sub-goal needs more permission than the caller holds, the caller escalates — it does not hand over authority it does not have.
+The rule we use: an agent may delegate a **sub-goal** but not its **contract**. A delegated agent inherits the caller's scope, never a wider one. If a sub-goal needs more permission than the caller holds, the caller escalates. It does not hand over authority it does not have.
 
 <CardGroup cols={2}>
   <Card title="Orchestration" icon="diagram-project" href="/intelligence/orchestration">

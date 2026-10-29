@@ -4,17 +4,17 @@ description: "The seven decisions between an idea and an agent that is allowed t
 icon: "rocket"
 ---
 
-There is no install command yet — Omenra is not released. This page is the shape of the first build, written so you can tell us where it is wrong before we freeze it.
+There is no install command yet. Omenra is not released. This page is the shape of the first build, written so you can tell us where it is wrong before we freeze it.
 
 Seven decisions. Each one is a page in this documentation, and each one is a chance to get the thing structurally right instead of patching it later.
 
 <Note>
-  Status: the platform is in design. Design partners get their first births before anyone else — see [Work with us](/company/about). Nothing on this page is a command you can run today.
+  Status: the platform is in design. Design partners get their first births before anyone else. See [Work with us](/company/about). Nothing on this page is a command you can run today.
 </Note>
 
 ## 1. Name the prediction
 
-Not the task — the prediction. "Answer customer emails" is a task. "Which of tonight's tickets will escalate within 48 hours, and why" is a prediction, and it has a horizon and a consequence.
+Not the task. The prediction. "Answer customer emails" is a task. "Which of tonight's tickets will escalate within 48 hours, and why" is a prediction, and it has a horizon and a consequence.
 
 If you cannot state the horizon and what happens when you are wrong, you do not have a use case yet. See [Prediction](/intelligence/prediction).
 
@@ -36,17 +36,17 @@ An agent with no memory re-derives the world from scratch every time it is calle
 
 ## 4. Give it tools
 
-Tools are how a mind touches the world. Every tool declares its risk class, its cost and whether it is reversible — an irreversible tool is a different kind of decision from a reversible one. See [Tools](/births/tools).
+Tools are how a mind touches the world. Every tool declares its risk class, its cost and whether it is reversible. An irreversible tool is a different kind of decision from a reversible one. See [Tools](/births/tools).
 
 ## 5. Set the contract
 
 The contract is the part people skip and then regret. It defines:
 
-- **Autonomy level** — L0 to L5, where L5 acts without asking. See [Autonomy](/intelligence/autonomy).
-- **Budget** — token spend, API spend, wall-clock time, and how many times it may retry.
-- **Scope** — what it is allowed to touch, expressed as permissions rather than intentions.
-- **Definition of done** — how the agent knows to stop, and how you know it did.
-- **Escalation** — who it asks when the contract does not cover the situation.
+- **Autonomy level**: L0 to L5, where L5 acts without asking. See [Autonomy](/intelligence/autonomy).
+- **Budget**: token spend, API spend, wall-clock time, and how many times it may retry.
+- **Scope**: what it is allowed to touch, expressed as permissions rather than intentions.
+- **Definition of done**: how the agent knows to stop, and how you know it did.
+- **Escalation**: who it asks when the contract does not cover the situation.
 
 <Warning>
   An agent without a definition of done does not stop; it wanders until the budget runs out. Write the stopping condition before the first run, not after the first incident.
@@ -58,7 +58,7 @@ Run it against cases where you already know the answer, and score **calibration*
 
 ## 7. Watch it
 
-Deployment is the start. A birth is observed: every action logged, every escalation recorded, every surprise kept as a case for the next version. The lifecycle does not end at launch — see [Lifecycle](/build/lifecycle).
+Deployment is the start. A birth is observed: every action logged, every escalation recorded, every surprise kept as a case for the next version. The lifecycle does not end at launch. See [Lifecycle](/build/lifecycle).
 
 ## The whole thing, in one picture
 
@@ -74,7 +74,7 @@ Deployment is the start. A birth is observed: every action logged, every escalat
 
 ## If you only do one thing
 
-Write the contract first. Not the prompt, not the architecture — the contract. Everything else is easier to change than the boundary you did not draw.
+Write the contract first. Not the prompt, not the architecture. The contract. Everything else is easier to change than the boundary you did not draw.
 
 <CardGroup cols={2}>
   <Card title="Learn the vocabulary" icon="book" href="/glossary">

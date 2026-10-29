@@ -12,7 +12,7 @@ Benchmarks measure whether a model is impressive. Evaluation measures whether a 
 
 **2. Coverage.** How much of the real input distribution gets a confident answer at all? A model that is perfectly calibrated on 20% of cases and silent on the rest is not useful; one that is calibrated on 80% is.
 
-**3. Task outcome.** Did the thing the human cared about happen? Revenue saved, incident caught early, ticket closed correctly. This is the number the business sees, and the one most easily gamed — which is why it comes last.
+**3. Task outcome.** Did the thing the human cared about happen? Revenue saved, incident caught early, ticket closed correctly. This is the number the business sees, and the one most easily gamed, which is why it comes last.
 
 A birth must clear all three. Passing task outcome while failing calibration means you have a system that gets the answer right for reasons it cannot explain, and that will be wrong in ways you cannot predict.
 
@@ -25,7 +25,7 @@ Every birth declares how it behaves when it is outside its competence:
 | **Answer** | Confidence above threshold, in distribution | "Escalation 0.71, driven by two SLA breaches" |
 | **Qualify** | Answer with a wide interval | "Escalation 0.3–0.6; the signal is contradictory" |
 | **Abstain** | No answer, with a reason | "New product line; no comparable history" |
-| **Escalate** | Hand to a human with context | "Above my risk class — needs approval" |
+| **Escalate** | Hand to a human with context | "Above my risk class: needs approval" |
 
 Scoring abstention correctly is what stops a system from guessing. Reward warranted abstention and penalise confident guessing, and the behaviour follows.
 
@@ -62,7 +62,7 @@ The set starts small and grows from real use.
 | Abstention rate not worse than the last release | Yes |
 | Behaviour on adversarial set reviewed by a human | Yes |
 | Latency and cost inside contract budget | Yes |
-| Task outcome improvement | Advisory — it can be noise |
+| Task outcome improvement | Advisory, since it can be noise |
 
 The last row is deliberate. A metric that can move for reasons unrelated to the change is a metric that should not gate a release.
 

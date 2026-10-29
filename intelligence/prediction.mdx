@@ -4,7 +4,7 @@ description: "How a claim about the future becomes something you can act on: pro
 icon: "telescope"
 ---
 
-This is the engine the company is built around. Everything else — the births, the contracts, the controls — exists to turn a prediction into an action.
+This is the engine the company is built around. Everything else (the births, the contracts, the controls) exists to turn a prediction into an action.
 
 ## A prediction is four things
 
@@ -29,7 +29,7 @@ Remove the horizon and you have an opinion. Remove the consequence and you have 
 
 **Signals.** Telemetry, market data, tickets, logs, sensor streams, news, human notes. The quality ceiling of a prediction is set here: no reasoning layer recovers information that was never collected.
 
-**World model.** A representation of what relates to what and how things change. This is what separates forecasting from curve-fitting — a model of *mechanism* lets you handle a situation that did not appear in the training data.
+**World model.** A representation of what relates to what and how things change. This is what separates forecasting from curve-fitting: a model of *mechanism* lets you handle a situation that did not appear in the training data.
 
 **Scenarios.** Several futures, not one. A single confident path is a story; a distribution over paths is a forecast. Divergent scenarios are the useful output, because they tell you what to watch.
 
@@ -46,10 +46,10 @@ Every Omenra forecaster is published with a **reliability curve** and a **Brier 
 | Stated probability | Observed frequency | Reading |
 | --- | --- | --- |
 | 70% | 68% | calibrated |
-| 70% | 45% | overconfident — do not ship |
-| 70% | 92% | underconfident — leaving value on the table |
+| 70% | 45% | overconfident, do not ship |
+| 70% | 92% | underconfident, leaving value on the table |
 
-Overconfidence is the failure that hurts. Underconfidence is the failure that costs opportunity. Both are fixable, but only if you measure them, which means logging every prediction and its eventual outcome — including the ones nobody acted on.
+Overconfidence is the failure that hurts. Underconfidence is the failure that costs opportunity. Both are fixable, but only if you measure them, which means logging every prediction and its eventual outcome, including the ones nobody acted on.
 
 ## Horizons
 
@@ -60,7 +60,7 @@ Different horizons are different problems, not different settings on one model.
 | Seconds to minutes | Robot motion, fraud interception, cache and capacity | Latency and noise |
 | Hours | Incident escalation, demand spikes, staffing | Signal availability |
 | Days to weeks | Supply, churn, hiring, cash | Confounding, regime change |
-| Months to years | Strategy, market entry, technology bets | Reflexivity — the prediction changes behaviour |
+| Months to years | Strategy, market entry, technology bets | Reflexivity: the prediction changes behaviour |
 
 The long horizons are where the ambition lives and where the evidence is thinnest. We would rather publish a well-calibrated six-hour forecast than a confident five-year one.
 
@@ -68,11 +68,11 @@ The long horizons are where the ambition lives and where the evidence is thinnes
 
 A forecasting system that will answer anything is a fortune teller. Three refusals:
 
-**No signal.** If there is no informational path from the present to the outcome, abstain. Abstention is a result, not a failure — it tells you to buy information instead of acting.
+**No signal.** If there is no informational path from the present to the outcome, abstain. Abstention is a result, not a failure: it tells you to buy information instead of acting.
 
 **Self-defeating.** Some predictions change the thing predicted: publishing "trust in this bank is falling" can cause the fall. Reflexive systems need a different treatment (scenario ranges and stress tests, not point probabilities), and we say so rather than pretending the number is neutral.
 
-**Harmful use.** Predictions about identifiable people used to deny them opportunity — credit, employment, insurance, liberty — are out of scope. Not because the statistics are uninteresting, but because the deployment is.
+**Harmful use.** Predictions about identifiable people used to deny them opportunity (credit, employment, insurance, liberty) are out of scope. Not because the statistics are uninteresting, but because the deployment is.
 
 <CardGroup cols={2}>
   <Card title="Evaluation" icon="flask" href="/build/evaluation">

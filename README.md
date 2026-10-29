@@ -1,6 +1,6 @@
 # Omenra docs
 
-Documentation for **Omenra** — a lab where intelligence is born: agents, models, tools, bots and robots built to anticipate. Published at `docs.omenra.si`.
+Documentation for **Omenra**, a lab where intelligence is born: agents, models, tools, bots and robots built to anticipate. Published at `docs.omenra.si`.
 
 ## Structure
 
@@ -27,7 +27,7 @@ faq.mdx
 
 Colours, sampled from the icon: `#3b5bff` disc, `#0b1020` space, `#f5f6f8` suit, `#cf9a63` tether. Wordmark in `logo/light.svg` and `logo/dark.svg`; standalone app icon in `icon.svg`; favicon in `favicon.svg`.
 
-The astronaut orbits the disc continuously — CSS animation inside each SVG, so it runs wherever the file is used as an `<img>`, with no JavaScript. Timing: one orbit every 26s (`orbit`), counter-rotated by `level` so it stays upright, a ±9° `tilt` so it drifts rather than slides, a 90s `drift` on the starfield for parallax, and two `twinkle` stars. `prefers-reduced-motion: reduce` stops all of it and leaves a clean static frame.
+The astronaut orbits the disc continuously, using CSS animation inside each SVG, so it runs wherever the file is used as an `<img>`, with no JavaScript. Timing: one orbit every 26s (`orbit`), counter-rotated by `level` so it stays upright, a ±9° `tilt` so it drifts rather than slides, a 90s `drift` on the starfield for parallax, and two `twinkle` stars. `prefers-reduced-motion: reduce` stops all of it and leaves a clean static frame.
 
 ## Publishing
 
@@ -41,7 +41,7 @@ The astronaut orbits the disc continuously — CSS animation inside each SVG, so
 
 2. **Get the files into the Mintlify project**
 
-   Push this directory to the repo connected to the Mintlify project (or paste pages through the dashboard). The old Mintlify starter kit's `essentials/`, `development.mdx` and `api-reference/` should be deleted — nothing in `docs.json` references them.
+   Push this directory to the repo connected to the Mintlify project (or paste pages through the dashboard). The old Mintlify starter kit's `essentials/`, `development.mdx` and `api-reference/` should be deleted. Nothing in `docs.json` references them.
 
 3. **Point the domain**
 
@@ -51,13 +51,13 @@ The astronaut orbits the disc continuously — CSS animation inside each SVG, so
 
 ## What is a standard, not a shipped feature
 
-This site defines the platform being built. It contains **no command-line, no SDK and no API endpoints**, because none exist yet — deliberately, so the docs cannot promise something that does not run. Pages that describe behaviour (`Autonomy`, `Safety`, `Lifecycle`) describe the model we are building to.
+This site defines the platform being built. It contains **no command-line, no SDK and no API endpoints**, because none exist yet, deliberately, so the docs cannot promise something that does not run. Pages that describe behaviour (`Autonomy`, `Safety`, `Lifecycle`) describe the model we are building to.
 
-Two places to keep honest as the product lands:
+Four places to keep honest as the product lands:
 
 | Page | Needs a rewrite when |
 | --- | --- |
-| `build/lifecycle.mdx` | The real contract manifest schema exists — replace the illustrative YAML |
+| `build/lifecycle.mdx` | The real contract manifest schema exists: replace the illustrative YAML |
 | `quickstart.mdx` | There is an actual first-run path to document |
 | `company/roadmap.mdx` | Anything in "Now" ships or slips |
 | `faq.mdx` | The "is there a product" and "is it open source" answers change |
@@ -66,7 +66,7 @@ Two places to keep honest as the product lands:
 
 - **Name.** The docs are built on **Omenra** to match `omenra.si` and `docs.omenra.si`. If the name changes, it is `docs.json` → `name`, plus the two logo SVGs, plus the "The name" section in `company/about.mdx`.
 - **Contact.** `hello@omenra.si` is used in `company/about.mdx` and `faq.mdx`. Confirm the mailbox exists before publishing.
-- **Refusals.** The "what we will not build" list in `control/safety.mdx` (lethal action, credit/employment/insurance/liberty scoring, election influence, self-granted permissions) is my draft of a defensible policy. It is your company — edit it to match what you actually commit to, but keep it specific. A refusal list that refuses nothing reads as marketing.
+- **Refusals.** The "what we will not build" list in `control/safety.mdx` (lethal action, credit/employment/insurance/liberty scoring, election influence, self-granted permissions) is a draft of a defensible policy. Edit it to match what the company actually commits to, but keep it specific. A refusal list that refuses nothing reads as marketing.
 - **Positioning.** "Born to rule the world" is framed in `vision.mdx` as *foresight without jurisdiction*, with an explicit paragraph on why we would not build systems that rule. Stronger or softer is your call; the safety pages depend on this framing.
 
 ## Archive

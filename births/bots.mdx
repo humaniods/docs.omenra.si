@@ -4,7 +4,7 @@ description: "An always-on agent bound to a channel: narrow remit, small budget,
 icon: "robot"
 ---
 
-A bot is an agent with a home. It lives in a chat room, an inbox, a queue, a stream — somewhere people or systems already are — and it stays there.
+A bot is an agent with a home. It lives in a chat room, an inbox, a queue or a stream, somewhere people or systems already are, and it stays there.
 
 The difference from an agent is not intelligence. It is **presence**: a bot is always on, always scoped, and expected to answer within seconds.
 
@@ -22,10 +22,10 @@ That last one is why bots are a distinct birth rather than "agents with a UI". A
 
 ## Good first bots
 
-- **Triage bot** — in an alerts channel, posts the prediction, the confidence and the two actions worth considering.
-- **Standup bot** — in a team channel, summarises what changed overnight that actually matters, with links.
-- **Intake bot** — in a shared inbox, classifies, extracts the essentials and routes, with an explicit "I am not sure" path.
-- **Status bot** — in an ops channel, answers "is it us?" by reading real telemetry rather than guessing.
+- **Triage bot**: in an alerts channel, posts the prediction, the confidence and the two actions worth considering.
+- **Standup bot**: in a team channel, summarises what changed overnight that actually matters, with links.
+- **Intake bot**: in a shared inbox, classifies, extracts the essentials and routes, with an explicit "I am not sure" path.
+- **Status bot**: in an ops channel, answers "is it us?" by reading real telemetry rather than guessing.
 
 Each of these is a **read-and-summarise** job. Bots that take consequential actions exist, but they should be born after the read-only version has earned trust in the same channel.
 
@@ -55,7 +55,7 @@ The same prediction behind both, differently dressed:
 | Failure | Roll back, retry, report | Answer badly, visibly, now |
 | Who sees it | Whoever reads the trace | Everyone in the room |
 
-If your bot needs an hour and a plan, it is not a bot — spawn an agent from the channel and report back when it finishes. Keeping that distinction prevents the most common bot failure: a chat interface to something that was never going to answer in ten seconds.
+If your bot needs an hour and a plan, it is not a bot. Spawn an agent from the channel and report back when it finishes. Keeping that distinction prevents the most common bot failure: a chat interface to something that was never going to answer in ten seconds.
 
 <CardGroup cols={2}>
   <Card title="Agents" icon="user-astronaut" href="/births/agents">

@@ -6,7 +6,7 @@ icon: "robot"
 
 A robot is where prediction stops being advice and becomes motion.
 
-Everything on the other four birth pages still applies — goal, memory, tools, contract — with one difference that rearranges the priorities: **the physical world does not roll back**.
+Everything on the other four birth pages still applies (goal, memory, tools, contract), with one difference that rearranges the priorities: **the physical world does not roll back**.
 
 ## Why embodiment is a distinct birth
 
@@ -26,7 +26,7 @@ No Omenra robot runs its first action in the real world.
 
 <Steps>
   <Step title="Simulate">
-    Train and evaluate in a physics simulation of the actual cell or aisle — same dimensions, same obstacles, same tolerances.
+    Train and evaluate in a physics simulation of the actual cell or aisle: same dimensions, same obstacles, same tolerances.
   </Step>
   <Step title="Rehearse">
     Run the intended task against recorded sensor data from the real site before touching anything. This catches the gap between the simulation and the room.
@@ -49,7 +49,7 @@ Every robot is born with four hard limits, enforced below the planning layer so 
 
 **Workspace limit.** A geometric boundary the body may not cross, enforced against the body's own position, not against its plan.
 
-**Stop conditions.** What the robot does when it loses comms, loses localisation, sees an unknown obstruction, or receives no heartbeat. The default is stop, hold position, and beacon — never "continue with the last plan".
+**Stop conditions.** What the robot does when it loses comms, loses localisation, sees an unknown obstruction, or receives no heartbeat. The default is stop, hold position, and beacon, never "continue with the last plan".
 
 <Warning>
   Never put a safety limit where the agent can read it and reason about it. Limits above the planning layer are suggestions that a sufficiently creative agent can argue with. Limits must sit in the control loop, below anything that thinks.
@@ -67,7 +67,7 @@ If the task is identical every cycle and the environment never varies, a fixed a
 
 ## Supervision is a product feature
 
-A robot without a human override is not autonomous, it is unsupervised. Remote supervision — live video, proposed action, single-approval, instant stop — is part of the birth, not an accessory bolted on after the first incident review.
+A robot without a human override is not autonomous, it is unsupervised. Remote supervision (live video, proposed action, single-approval, instant stop) is part of the birth, not an accessory bolted on after the first incident review.
 
 The cost of that supervision is the real economics of embodied intelligence, and pretending otherwise is how robotics companies build impressive demos and unusable products.
 

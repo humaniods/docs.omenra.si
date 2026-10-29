@@ -32,7 +32,7 @@ Autonomy is granted on evidence, in a fixed order:
     The agent predicts alongside a human deciding. Nobody acts on it. You are measuring calibration and surprise.
   </Step>
   <Step title="Draft (L2)">
-    Accuracy is acceptable and the human is mostly clicking approve. You are measuring how often the human changes the answer — that rate is the real cost of the agent.
+    Accuracy is acceptable and the human is mostly clicking approve. You are measuring how often the human changes the answer. That rate is the real cost of the agent.
   </Step>
   <Step title="Reviewed action (L3–L4)">
     Reversibility is high and the review rate has fallen. You are measuring exceptions.
@@ -42,16 +42,16 @@ Autonomy is granted on evidence, in a fixed order:
   </Step>
 </Steps>
 
-Moving a level up is a decision with a name attached. Moving it down is always allowed, immediately, by anyone with the authority over that scope — a demotion that requires a meeting will not happen at 3am when it is needed.
+Moving a level up is a decision with a name attached. Moving it down is always allowed, immediately, by anyone with the authority over that scope. A demotion that requires a meeting will not happen at 3am when it is needed.
 
 ## Budgets are part of autonomy
 
-An agent with L5 and no budget is not autonomous, it is unbounded. Every contract carries:
+An agent with L5 and no budget is not autonomous. It is unbounded. Every contract carries:
 
-- **Spend** — money per run and per day.
-- **Time** — wall clock, and what happens on timeout.
-- **Iterations** — how many attempts before it must escalate.
-- **Blast radius** — how many entities a single run may touch.
+- **Spend**: money per run and per day.
+- **Time**: wall clock, and what happens on timeout.
+- **Iterations**: how many attempts before it must escalate.
+- **Blast radius**: how many entities a single run may touch.
 
 When the budget runs out the agent stops and escalates. It does not degrade into an unaudited mode, and it does not "just finish" the last step.
 

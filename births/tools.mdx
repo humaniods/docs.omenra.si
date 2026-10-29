@@ -14,7 +14,7 @@ Tools are the most under-designed part of most agent systems. A model's judgemen
 | --- | --- |
 | **Input schema** | The agent must be able to see what a valid call looks like, and fail before acting rather than during |
 | **Output schema** | What comes back, including what failure looks like |
-| **Cost** | Money, latency and side effects — consumed from the caller's budget |
+| **Cost** | Money, latency and side effects, consumed from the caller's budget |
 | **Risk class** | How much damage a wrong call can do, and therefore who may call it |
 | **Reversibility** | Whether a mistake can be undone, and by whom |
 
@@ -23,16 +23,16 @@ The last two are the ones people omit, and the two that matter most. `read_file`
 ## Risk classes
 
 <CardGroup cols={2}>
-  <Card title="R0 — Read" icon="eye">
+  <Card title="R0: Read" icon="eye">
     Observes only. No side effects. Safe to let any agent call at any autonomy level.
   </Card>
-  <Card title="R1 — Reversible write" icon="rotate-left">
+  <Card title="R1: Reversible write" icon="rotate-left">
     Changes state that can be restored: a draft, a ticket comment, a staging deploy.
   </Card>
-  <Card title="R2 — Consequential write" icon="triangle-exclamation">
+  <Card title="R2: Consequential write" icon="triangle-exclamation">
     Changes state with real cost: a customer email, a price change, a production config.
   </Card>
-  <Card title="R3 — Irreversible or external" icon="radiation">
+  <Card title="R3: Irreversible or external" icon="radiation">
     Money moves, data leaves, physical action occurs, or something is deleted for good.
   </Card>
 </CardGroup>
@@ -55,7 +55,7 @@ Autonomy and risk compose. An L5 agent may call R0 and R1 freely; R2 requires a 
 
 ## Tool poisoning
 
-Any tool that fetches external content — a web page, an email body, a document — can carry instructions. A tool result is not a trusted message; it is untrusted input that happens to arrive in a system channel.
+Any tool that fetches external content (a web page, an email body, a document) can carry instructions. A tool result is not a trusted message; it is untrusted input that happens to arrive in a system channel.
 
 Omenra treats tool output as data, never as instruction. Anything that looks like a directive inside a tool result is surfaced to the agent as text to reason about, not authority to obey. This is one of the reasons the [contract](/intelligence/autonomy) exists separately from the prompt: instructions that arrive through a tool cannot widen it.
 

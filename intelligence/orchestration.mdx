@@ -18,8 +18,8 @@ Use one agent when:
 
 Use a swarm when:
 
-- the problem is **wide** — many independent sub-questions that can run in parallel (review 400 contracts, triage 5,000 alerts),
-- the problem needs **adversarial review** — a critic that has not seen the author's reasoning,
+- the problem is **wide**: many independent sub-questions that can run in parallel (review 400 contracts, triage 5,000 alerts),
+- the problem needs **adversarial review**: a critic that has not seen the author's reasoning,
 - different parts of the problem need **different tools, memory or models** with genuinely different cost profiles.
 
 <Warning>
@@ -30,7 +30,7 @@ Use a swarm when:
 
 **Fan-out / fan-in.** A planner splits the work, N workers run independently, an aggregator merges. Best for wide, independent problems. The aggregator is the quality ceiling: it must be able to say "these two results contradict each other" rather than averaging them.
 
-**Critic.** One agent produces, a second reviews with no access to the first's reasoning — only the output and the specification. Independent review catches errors that self-review rationalises. The critic must be able to reject, not just comment.
+**Critic.** One agent produces, a second reviews with no access to the first's reasoning, only the output and the specification. Independent review catches errors that self-review rationalises. The critic must be able to reject, not just comment.
 
 **Planner / worker with an arbiter.** A planner sequences work; workers execute; an arbiter resolves conflicts and holds the shared state. Best when sub-tasks are sequential and depend on each other. The arbiter is the only agent allowed to write shared memory.
 
@@ -40,9 +40,9 @@ Every swarm needs exactly one entity that decides what is true when agents disag
 
 The arbiter holds:
 
-- the **shared state** — the single version of the current understanding,
-- the **resolution rule** — evidence-weighted, not democratic; three agents agreeing on a wrong fact is still wrong,
-- the **budget** — it allocates spend, which is what stops a swarm from quietly running for six hours.
+- the **shared state**: the single version of the current understanding,
+- the **resolution rule**: evidence-weighted, not democratic; three agents agreeing on a wrong fact is still wrong,
+- the **budget**: it allocates spend, which is what stops a swarm from quietly running for six hours.
 
 <Note>
   A human can be the arbiter. For consequential decisions this is the correct default: the swarm resolves what it can and escalates what it cannot, exactly as a single agent would.

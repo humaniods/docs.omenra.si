@@ -23,7 +23,7 @@ A birth is not a deployment. It is a thing with a life: it is designed, evaluate
 An illustrative manifest, showing the shape rather than a final schema:
 
 ```yaml
-# illustrative — the schema is not final
+# illustrative; the schema is not final
 name: escalation-forecaster
 birth: agent
 remit: >
@@ -62,7 +62,7 @@ Nobody's first release should be at the top of the autonomy ladder. The order is
 
 ## Observe: surprises are the product
 
-The signal that a birth is working is not "no incidents". It is **surprises per week falling while coverage rises** — the agent is still finding things you did not specify, and it is finding fewer of them the wrong way.
+The signal that a birth is working is not "no incidents". It is **surprises per week falling while coverage rises**: the agent is still finding things you did not specify, and it is finding fewer of them the wrong way.
 
 Every surprise becomes a case. Every case joins the evaluation set. Over a year, the evaluation set becomes the most valuable artefact in the project: a compressed history of every way this problem can go wrong.
 
@@ -70,8 +70,8 @@ Every surprise becomes a case. Every case joins the evaluation set. Over a year,
 
 Two kinds of change, and they need different treatment:
 
-- **Contract changes** — autonomy, budget, scope, tools. A permission change is a security event: reviewed, logged, and never bundled into a "minor" release.
-- **Capability changes** — prompts, models, retrieval, memory policy. These must pass the full evaluation set before release, including the cases that previously failed.
+- **Contract changes**: autonomy, budget, scope, tools. A permission change is a security event: reviewed, logged, and never bundled into a "minor" release.
+- **Capability changes**: prompts, models, retrieval, memory policy. These must pass the full evaluation set before release, including the cases that previously failed.
 
 <Warning>
   Never change a model or a prompt without re-running evaluation. A model upgrade that improves benchmarks can silently destroy calibration, and calibration is what makes the predictions usable at all.
